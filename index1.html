@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misi Rasio Satuan — Jadilah Detektif Harga!</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#1E293B',
+                        primary: '#2563EB',
+                        secondary: '#F59E0B',
+                        accent: '#10B981',
+                        purple: '#8B5CF6',
+                        brandYellow: '#FBBF24',
+                        softBlue: '#EFF6FF',
+                        softGreen: '#ECFDF5',
+                        softOrange: '#FFF7ED',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Comic Sans MS', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Fredoka', 'Inter', sans-serif;
+            background-color: #F8FAFC;
+        }
+        .step-active {
+            box-shadow: 0 0 15px rgba(37, 99, 235, 0.4);
+            transform: scale(1.03);
+        }
+        .card-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+        }
+        .animate-bounce-short {
+            animation: bounce 1s infinite alternate;
+        }
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-8px); }
+        }
+    </style>
+</head>
+<body class="text-slate-800 min-h-screen flex flex-col justify-between selection:bg-brandYellow selection:text-slate-900">
+
+    <!-- HEADER / APP BAR -->
+    <header class="bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="goToStep(1)">
+                <!-- SVG Detective Badge Icon -->
+                <div class="w-11 h-11 bg-brandYellow text-slate-900 rounded-2xl flex items-center justify-center font-bold text-xl shadow-md transform hover:rotate-6 transition">
+                    🔍
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-xl font-bold tracking-wide text-brandYellow">Misi Rasio Satuan</h1>
+                    <p class="text-xs text-blue-200">Matematika Kelas VI SD — Jadilah Detektif Harga!</p>
+                </div>
+            </div>
+
+            <!-- Header Action Buttons -->
+            <div class="flex items-center gap-2">
+                <button onclick="resetApp()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs md:text-sm font-semibold rounded-xl border border-slate-600 transition flex items-center gap-1">
+                    🔄 Reset Progress
+                </button>
+                <span class="bg-indigo-800 text-indigo-200 text-xs px-3 py-1.5 rounded-xl font-bold border border-indigo-600">
+                    Fase C / PBL
+                </span>
+            </div>
+        </div>
+
+        <!-- PROGRESS SYNTAX NAVIGATION BAR -->
+        <div class="bg-slate-950/70 border-t border-slate-800 backdrop-blur-md">
+            <div class="max-w-7xl mx-auto px-2 py-2 overflow-x-auto scrollbar-none">
+                <div class="flex justify-between items-center min-w-[650px] px-2 text-xs md:text-sm font-bold">
+                    <button id="nav-btn-1" onclick="goToStep(1)" class="flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md">
+                        <span class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center text-xs">1</span>
+                        <span>1. AMATI</span>
+                    </button>
+                    <div class="w-4 h-0.5 bg-slate-700"></div>
+                    <button id="nav-btn-2" onclick="goToStep(2)" class="flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-white">
+                        <span class="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center text-xs">2</span>
+                        <span>2. RENCANAKAN</span>
+                    </button>
+                    <div class="w-4 h-0.5 bg-slate-700"></div>
+                    <button id="nav-btn-3" onclick="goToStep(3)" class="flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-white">
+                        <span class="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center text-xs">3</span>
+                        <span>3. SELIDIKI</span>
+                    </button>
+                    <div class="w-4 h-0.5 bg-slate-700"></div>
+                    <button id="nav-btn-4" onclick="goToStep(4)" class="flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-white">
+                        <span class="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center text-xs">4</span>
+                        <span>4. SAJIKAN</span>
+                    </button>
+                    <div class="w-4 h-0.5 bg-slate-700"></div>
+                    <button id="nav-btn-5" onclick="goToStep(5)" class="flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-white">
+                        <span class="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center text-xs">5</span>
+                        <span>5. REFLEKSI</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-6xl mx-auto px-4 py-6 flex-grow w-full">
+
+        <!-- ==================== TAHAP 1: AMATI ==================== -->
+        <section id="step-1" class="space-y-6">
+            <!-- Header Card -->
+            <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-3xl p-6 shadow-lg relative overflow-hidden">
+                <div class="relative z-10">
+                    <span class="bg-brandYellow text-slate-900 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">Sintaks 1: Orientasi Masalah</span>
+                    <h2 class="text-2xl md:text-3xl font-bold mt-2">Misi Detektif: Misteri Dua Toko Buku 📚</h2>
+                    <p class="text-blue-100 text-sm md:text-base mt-1">Bantu Budi memilih toko yang menawarkan paket buku paling hemat per bukunya!</p>
+                </div>
+                <div class="absolute -right-6 -bottom-10 opacity-20 text-9xl">🔎</div>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Toko A Card -->
+                <div class="bg-white rounded-3xl p-6 card-shadow border-2 border-blue-100 hover:border-blue-400 transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">TOKO A</span>
+                            <span class="text-xs text-slate-500 font-semibold">Paket Ceria</span>
+                        </div>
+                        
+                        <!-- SVG Toko Buku A -->
+                        <div class="bg-softBlue p-4 rounded-2xl mb-4 flex justify-center items-center h-48">
+                            <svg class="w-full h-full max-h-40" viewBox="0 0 200 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="20" y="40" width="160" height="90" rx="8" fill="#3B82F6"/>
+                                <rect x="30" y="50" width="140" height="70" rx="4" fill="#EFF6FF"/>
+                                <path d="M50 70H70V100H50V70Z" fill="#F59E0B"/>
+                                <path d="M75 70H95V100H75V70Z" fill="#10B981"/>
+                                <path d="M100 70H120V100H100V70Z" fill="#EC4899"/>
+                                <path d="M125 70H145V100H125V70Z" fill="#8B5CF6"/>
+                                <path d="M60 60H135V65H60V60Z" fill="#3B82F6"/>
+                                <circle cx="100" cy="30" r="18" fill="#FBBF24"/>
+                                <text x="100" y="35" text-anchor="middle" font-weight="bold" fill="#1E293B" font-size="16">A</text>
+                            </svg>
+                        </div>
+
+                        <div class="space-y-2 text-center">
+                            <p class="text-lg font-bold text-slate-800">📦 Paket 5 Buku Tulis</p>
+                            <p class="text-2xl font-extrabold text-blue-600">Rp 20.000</p>
+                            <p class="text-xs text-slate-500">Harga total untuk 5 buku sekaligus</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Toko B Card -->
+                <div class="bg-white rounded-3xl p-6 card-shadow border-2 border-orange-100 hover:border-orange-400 transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="bg-orange-100 text-orange-800 text-xs font-bold px-3 py-1 rounded-full">TOKO B</span>
+                            <span class="text-xs text-slate-500 font-semibold">Paket Hemat</span>
+                        </div>
+
+                        <!-- SVG Toko Buku B -->
+                        <div class="bg-softOrange p-4 rounded-2xl mb-4 flex justify-center items-center h-48">
+                            <svg class="w-full h-full max-h-40" viewBox="0 0 200 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="20" y="40" width="160" height="90" rx="8" fill="#F97316"/>
+                                <rect x="30" y="50" width="140" height="70" rx="4" fill="#FFF7ED"/>
+                                <path d="M55 70H75V100H55V70Z" fill="#06B6D4"/>
+                                <path d="M80 70H100V100H80V70Z" fill="#8B5CF6"/>
+                                <path d="M105 70H125V100H105V70Z" fill="#10B981"/>
+                                <path d="M130 70H150V100H130V70Z" fill="#F43F5E"/>
+                                <circle cx="100" cy="30" r="18" fill="#FBBF24"/>
+                                <text x="100" y="35" text-anchor="middle" font-weight="bold" fill="#1E293B" font-size="16">B</text>
+                            </svg>
+                        </div>
+
+                        <div class="space-y-2 text-center">
+                            <p class="text-lg font-bold text-slate-800">📦 Paket 4 Buku Tulis</p>
+                            <p class="text-2xl font-extrabold text-orange-600">Rp 18.000</p>
+                            <p class="text-xs text-slate-500">Harga total untuk 4 buku sekaligus</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detective Character & Speech Bubble Problem Orientation -->
+            <div class="bg-white rounded-3xl p-6 card-shadow border border-slate-200 flex flex-col md:flex-row items-center gap-6">
+                <!-- SVG Detective Character -->
+                <div class="w-32 h-32 flex-shrink-0 bg-indigo-50 rounded-2xl p-2 flex items-center justify-center">
+                    <svg viewBox="0 0 100 100" class="w-full h-full">
+                        <circle cx="50" cy="40" r="22" fill="#FDE047"/>
+                        <!-- Cap -->
+                        <path d="M25 32 C 25 15, 75 15, 75 32 Z" fill="#1E293B"/>
+                        <path d="M20 32 L80 32 L75 37 L25 37 Z" fill="#334155"/>
+                        <!-- Glasses / Magnifier -->
+                        <circle cx="42" cy="38" r="7" fill="none" stroke="#1E293B" stroke-width="2"/>
+                        <circle cx="58" cy="38" r="7" fill="none" stroke="#1E293B" stroke-width="2"/>
+                        <line x1="49" y1="38" x2="51" y2="38" stroke="#1E293B" stroke-width="2"/>
+                        <!-- Eyes -->
+                        <circle cx="42" cy="38" r="2" fill="#1E293B"/>
+                        <circle cx="58" cy="38" r="2" fill="#1E293B"/>
+                        <!-- Smile -->
+                        <path d="M44 48 Q 50 54 56 48" fill="none" stroke="#1E293B" stroke-width="2" stroke-linecap="round"/>
+                        <!-- Coat -->
+                        <path d="M25 65 C 25 55, 75 55, 75 65 L 80 95 L 20 95 Z" fill="#3B82F6"/>
+                        <!-- Tie -->
+                        <polygon points="50,60 54,75 50,85 46,75" fill="#EF4444"/>
+                    </svg>
+                </div>
+
+                <div class="space-y-3 flex-grow">
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-2xl">
+                        <h3 class="font-bold text-blue-900 text-base md:text-lg flex items-center gap-2">
+                            <span>🧠 Pertanyaan Pemantik Detektif:</span>
+                        </h3>
+                        <ul class="list-disc list-inside text-sm text-slate-700 space-y-1 mt-2">
+                            <li>Apakah paket dengan harga total lebih rendah (Rp18.000) pasti selalu lebih hemat?</li>
+                            <li>Bagaimana cara membandingkan harga kedua toko tersebut secara adil dan tepat?</li>
+                            <li>Toko mana yang menawarkan harga paling murah untuk **setiap 1 buku**?</li>
+                        </ul>
+                    </div>
+
+                    <!-- Interactive Pre-Hypothesis Selection -->
+                    <div class="pt-2">
+                        <p class="font-bold text-sm text-slate-800 mb-2">🤔 Apa dugaan awal kelompokmu? Pilih salah satu:</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" id="hypothesis-options">
+                            <button onclick="selectHypothesis('A')" id="hypo-A" class="p-3 border-2 border-slate-200 rounded-2xl hover:border-blue-500 hover:bg-blue-50 font-semibold text-sm transition text-slate-700">
+                                🏬 Toko A Lebih Hemat
+                            </button>
+                            <button onclick="selectHypothesis('B')" id="hypo-B" class="p-3 border-2 border-slate-200 rounded-2xl hover:border-orange-500 hover:bg-orange-50 font-semibold text-sm transition text-slate-700">
+                                🏪 Toko B Lebih Hemat
+                            </button>
+                            <button onclick="selectHypothesis('SAME')" id="hypo-SAME" class="p-3 border-2 border-slate-200 rounded-2xl hover:border-purple-500 hover:bg-purple-50 font-semibold text-sm transition text-slate-700">
+                                ⚖️ HARGANYA SAMA SAJA
+                            </button>
+                        </div>
+                        <div id="hypothesis-feedback" class="hidden mt-3 p-3 rounded-2xl text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300">
+                            ✨ Dugaan awal tersimpan! Ayo buktikan dugaanmu pada tahap berikutnya!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Next Navigation -->
+            <div class="flex justify-end pt-4">
+                <button onclick="goToStep(2)" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-2xl shadow-lg transition flex items-center gap-2">
+                    <span>Lanjut ke Tahap 2: Rencanakan</span>
+                    <span>➡️</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ==================== TAHAP 2: RENCANAKAN ==================== -->
+        <section id="step-2" class="hidden space-y-6">
+            <!-- Header Card -->
+            <div class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-3xl p-6 shadow-lg relative overflow-hidden">
+                <div class="relative z-10">
+                    <span class="bg-brandYellow text-slate-900 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">Sintaks 2: Organisasi Belajar</span>
+                    <h2 class="text-2xl md:text-3xl font-bold mt-2">Bagi Peran & Susun Strategi Penyelidikan 📋</h2>
+                    <p class="text-purple-100 text-sm md:text-base mt-1">Detektif yang hebat selalu bekerja sama dalam tim untuk memecahkan masalah!</p>
+                </div>
+                <div class="absolute -right-6 -bottom-10 opacity-20 text-9xl">👥</div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Group Form Card (2 Columns) -->
+                <div class="lg:col-span-2 bg-white rounded-3xl p-6 card-shadow border border-slate-200 space-y-4">
+                    <div class="flex items-center justify-between border-b pb-3">
+                        <h3 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                            <span>👥 Pembagian Peran Anggota Kelompok</span>
+                        </h3>
+                        <span class="text-xs bg-purple-100 text-purple-700 px-3 py-1 rounded-full font-bold">5 Anggota Tim</span>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Nama Kelompok Detektif:</label>
+                            <input type="text" id="group-name" placeholder="Contoh: Tim Detektif Matematika 6A" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:outline-none text-sm font-semibold">
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 mb-1">👑 1. Ketua Diskusi:</label>
+                                <input type="text" id="role-1" placeholder="Nama siswa" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-purple-400 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 mb-1">📝 2. Pencatat Data:</label>
+                                <input type="text" id="role-2" placeholder="Nama siswa" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-purple-400 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 mb-1">🧮 3. Penghitung:</label>
+                                <input type="text" id="role-3" placeholder="Nama siswa" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-purple-400 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 mb-1">💻 4. Operator Media Digital:</label>
+                                <input type="text" id="role-4" placeholder="Nama siswa" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-purple-400 focus:outline-none">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-xs font-bold text-slate-600 mb-1">📢 5. Penyaji Hasil (Presentator):</label>
+                                <input type="text" id="role-5" placeholder="Nama siswa" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-purple-400 focus:outline-none">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Guidance Steps Card -->
+                <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-3xl p-6 card-shadow border border-indigo-100 flex flex-col justify-between space-y-4">
+                    <div>
+                        <h3 class="font-bold text-lg text-indigo-900 mb-3 flex items-center gap-2">
+                            <span>📜 Panduan Penyelidikan</span>
+                        </h3>
+                        <ol class="space-y-3 text-xs md:text-sm text-slate-700 font-medium">
+                            <li class="flex items-start gap-2 bg-white p-2.5 rounded-xl shadow-sm border border-indigo-100">
+                                <span class="bg-indigo-600 text-white w-5 h-5 rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">1</span>
+                                <span>Mencatat jumlah buku dan harga paket masing-masing toko.</span>
+                            </li>
+                            <li class="flex items-start gap-2 bg-white p-2.5 rounded-xl shadow-sm border border-indigo-100">
+                                <span class="bg-indigo-600 text-white w-5 h-5 rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">2</span>
+                                <span>Menghitung **harga untuk 1 buku** (rasio satuan) di setiap toko.</span>
+                            </li>
+                            <li class="flex items-start gap-2 bg-white p-2.5 rounded-xl shadow-sm border border-indigo-100">
+                                <span class="bg-indigo-600 text-white w-5 h-5 rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">3</span>
+                                <span>Membandingkan hasil harga per satu buku dari Toko A & Toko B.</span>
+                            </li>
+                            <li class="flex items-start gap-2 bg-white p-2.5 rounded-xl shadow-sm border border-indigo-100">
+                                <span class="bg-indigo-600 text-white w-5 h-5 rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">4</span>
+                                <span>Menyusun kesimpulan toko mana yang lebih hemat beserta buktinya.</span>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <!-- Strategy Picker -->
+                    <div class="bg-white p-3 rounded-2xl border border-indigo-200">
+                        <label class="block text-xs font-bold text-indigo-900 mb-1">🎯 Strategi Penyelidikan Kelompok:</label>
+                        <select id="investigation-strategy" class="w-full p-2 bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold focus:outline-none">
+                            <option value="1">Membagi harga total dengan jumlah barang (Pembagian Langsung)</option>
+                            <option value="2">Menggunakan tabel rasio senilai secara bertahap</option>
+                            <option value="3">Menggunakan gambar visual pecahan satuan</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="flex justify-between items-center pt-4">
+                <button onclick="goToStep(1)" class="px-5 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold rounded-2xl transition">
+                    ⬅️ Kembali
+                </button>
+                <button onclick="goToStep(3)" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-2xl shadow-lg transition flex items-center gap-2">
+                    <span>Mulai Penyelidikan (Tahap 3)</span>
+                    <span>🚀</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ==================== TAHAP 3: SELIDIKI ==================== -->
+        <section id="step-3" class="hidden space-y-6">
+            <!-- Header Card -->
+            <div class="bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-3xl p-6 shadow-lg relative overflow-hidden">
+                <div class="relative z-10">
+                    <span class="bg-brandYellow text-slate-900 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">Sintaks 3: Penyelidikan Mandiri & Kelompok</span>
+                    <h2 class="text-2xl md:text-3xl font-bold mt-2">Kalkulator Rasio Satuan Interaktif 🧮</h2>
+                    <p class="text-emerald-100 text-sm md:text-base mt-1">Masukkan data harga dan jumlah barang untuk menemukan nilai satuan secara presisi!</p>
+                </div>
+                <div class="absolute -right-6 -bottom-10 opacity-20 text-9xl">🧮</div>
+            </div>
+
+            <!-- Formula Concept Banner -->
+            <div class="bg-amber-50 border-2 border-amber-300 rounded-2xl p-4 flex flex-col md:flex-row items-center justify-between gap-3 text-amber-900">
+                <div class="flex items-center gap-3">
+                    <span class="text-3xl">💡</span>
+                    <div>
+                        <h4 class="font-bold text-sm md:text-base">Rumus Rasio Satuan:</h4>
+                        <p class="text-xs md:text-sm">Nilai Satuan = Total Harga ÷ Banyak Barang</p>
+                    </div>
+                </div>
+                <span class="bg-amber-200 text-amber-900 text-xs font-bold px-3 py-1.5 rounded-xl">
+                    Rasio Satuan = Nilai untuk 1 unit barang
+                </span>
+            </div>
+
+            <!-- Calculator Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Panel Toko A -->
+                <div class="bg-white rounded-3xl p-6 card-shadow border-2 border-blue-200 space-y-4">
+                    <div class="flex justify-between items-center bg-blue-50 p-3 rounded-2xl">
+                        <span class="font-bold text-blue-900 text-base">🏬 Toko Buku A</span>
+                        <span class="text-xs font-bold bg-blue-600 text-white px-2.5 py-1 rounded-full">Paket Ceria</span>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1">Jumlah Barang (Buku):</label>
+                            <input type="number" id="qty-A" value="5" min="1" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl font-bold text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1">Total Harga Paket (Rp):</label>
+                            <input type="number" id="price-A" value="20000" min="100" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl font-bold text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        </div>
+
+                        <button onclick="calculateStore('A')" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow transition flex justify-center items-center gap-2">
+                            <span>Hitung Harga 1 Buku Toko A</span>
+                            <span>⚡</span>
+                        </button>
+                    </div>
+
+                    <!-- Result Panel A -->
+                    <div id="result-box-A" class="bg-blue-50/70 border border-blue-200 rounded-2xl p-4 space-y-2">
+                        <span class="text-xs font-bold text-blue-800 uppercase">Hasil Perhitungan Toko A:</span>
+                        <div class="text-xl font-extrabold text-blue-700" id="unit-price-A">Rp 4.000 / buku</div>
+                        <p class="text-xs text-slate-600 bg-white p-2.5 rounded-xl border border-blue-100" id="step-A">
+                            Langkah: Rp 20.000 ÷ 5 buku = Rp 4.000 per buku.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Panel Toko B -->
+                <div class="bg-white rounded-3xl p-6 card-shadow border-2 border-orange-200 space-y-4">
+                    <div class="flex justify-between items-center bg-orange-50 p-3 rounded-2xl">
+                        <span class="font-bold text-orange-900 text-base">🏪 Toko Buku B</span>
+                        <span class="text-xs font-bold bg-orange-600 text-white px-2.5 py-1 rounded-full">Paket Hemat</span>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1">Jumlah Barang (Buku):</label>
+                            <input type="number" id="qty-B" value="4" min="1" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl font-bold text-slate-800 focus:ring-2 focus:ring-orange-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1">Total Harga Paket (Rp):</label>
+                            <input type="number" id="price-B" value="18000" min="100" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl font-bold text-slate-800 focus:ring-2 focus:ring-orange-500 focus:outline-none">
+                        </div>
+
+                        <button onclick="calculateStore('B')" class="w-full py-3 bg-orange-600 hover:bg-orange-700 text-white font-bold rounded-xl shadow transition flex justify-center items-center gap-2">
+                            <span>Hitung Harga 1 Buku Toko B</span>
+                            <span>⚡</span>
+                        </button>
+                    </div>
+
+                    <!-- Result Panel B -->
+                    <div id="result-box-B" class="bg-orange-50/70 border border-orange-200 rounded-2xl p-4 space-y-2">
+                        <span class="text-xs font-bold text-orange-800 uppercase">Hasil Perhitungan Toko B:</span>
+                        <div class="text-xl font-extrabold text-orange-700" id="unit-price-B">Rp 4.500 / buku</div>
+                        <p class="text-xs text-slate-600 bg-white p-2.5 rounded-xl border border-orange-100" id="step-B">
+                            Langkah: Rp 18.000 ÷ 4 buku = Rp 4.500 per buku.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison Summary Box -->
+            <div id="comparison-summary" class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white p-6 rounded-3xl shadow-lg border border-teal-300 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="space-y-1 text-center md:text-left">
+                    <span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Hasil Penyelidikan Lengkap</span>
+                    <h3 class="text-xl font-extrabold text-brandYellow" id="compare-title">Toko A Lebih Hemat Rp 500 per buku!</h3>
+                    <p class="text-xs md:text-sm text-emerald-100" id="compare-desc">
+                        Meskipun harga total Toko B terlihat lebih murah (Rp18.000 vs Rp20.000), tetapi setelah dihitung harga 1 bukunya, Toko A ternyata lebih hemat!
+                    </p>
+                </div>
+                <div class="text-4xl bg-white/10 p-4 rounded-2xl flex-shrink-0 animate-bounce-short">
+                    🏆
+                </div>
+            </div>
+
+            <!-- Conceptual Summary Card -->
+            <div class="bg-white rounded-3xl p-6 card-shadow border border-slate-200 flex flex-col md:flex-row items-center gap-6">
+                <div class="w-24 h-24 flex-shrink-0 bg-yellow-100 rounded-2xl p-3 flex items-center justify-center text-4xl">
+                    📚
+                </div>
+                <div class="space-y-2">
+                    <h4 class="font-bold text-slate-800 text-base">📌 Ringkasan Konsep Detektif:</h4>
+                    <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                        **Rasio Satuan** adalah perbandingan dua besaran di mana besaran kedua bernilai tepat **1 satuan**. Dengan mengetahui rasio satuan, kita dapat membandingkan pilihan harga secara adil, rasional, dan hemat!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="flex justify-between items-center pt-4">
+                <button onclick="goToStep(2)" class="px-5 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold rounded-2xl transition">
+                    ⬅️ Kembali
+                </button>
+                <button onclick="goToStep(4)" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-2xl shadow-lg transition flex items-center gap-2">
+                    <span>Lanjut ke Penyajian Hasil (Tahap 4)</span>
+                    <span>➡️</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ==================== TAHAP 4: SAJIKAN ==================== -->
+        <section id="step-4" class="hidden space-y-6">
+            <!-- Header Card -->
+            <div class="bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-3xl p-6 shadow-lg relative overflow-hidden">
+                <div class="relative z-10">
+                    <span class="bg-slate-900 text-brandYellow px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">Sintaks 4: Develop & Present Results</span>
+                    <h2 class="text-2xl md:text-3xl font-bold mt-2">Susun Laporan & Presentasi Diskusi 📢</h2>
+                    <p class="text-amber-100 text-sm md:text-base mt-1">Gunakan bukti perhitungan matematika untuk menyampaikan hasil diskusi di depan kelas!</p>
+                </div>
+                <div class="absolute -right-6 -bottom-10 opacity-20 text-9xl">🎤</div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Presentation Form & Summary Generator -->
+                <div class="lg:col-span-2 bg-white rounded-3xl p-6 card-shadow border border-slate-200 space-y-4">
+                    <h3 class="font-bold text-lg text-slate-800 border-b pb-3 flex items-center justify-between">
+                        <span>✍️ Form Penyusunan Kesimpulan Kelompok</span>
+                        <button onclick="autoFillPresentation()" class="text-xs bg-amber-100 text-amber-800 px-3 py-1 rounded-xl font-bold hover:bg-amber-200 transition">
+                            🔄 Ambil Data Kalkulator
+                        </button>
+                    </h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1">Harga Satuan Toko A (Rp):</label>
+                            <input type="text" id="pres-price-A" value="4.000" class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-semibold">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1">Harga Satuan Toko B (Rp):</label>
+                            <input type="text" id="pres-price-B" value="4.500" class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-semibold">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1">Toko Paling Hemat Terpilih:</label>
+                        <select id="pres-best-store" class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-semibold">
+                            <option value="Toko A">Toko A (Rp 4.000 per buku)</option>
+                            <option value="Toko B">Toko B (Rp 4.500 per buku)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1">Alasan Matematis Kelompok:</label>
+                        <textarea id="pres-reason" rows="3" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-400 focus:outline-none" placeholder="Jelaskan alasan matematisnya...">harga 1 buku di Toko A (Rp4.000) lebih murah Rp500 dibandingkan harga 1 buku di Toko B (Rp4.500).</textarea>
+                    </div>
+
+                    <button onclick="generatePresentationScript()" class="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl shadow transition flex justify-center items-center gap-2">
+                        <span>✨ Generate Text Ringkasan Presentasi</span>
+                    </button>
+
+                    <!-- Generated Script Box -->
+                    <div id="script-output-box" class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-4 space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-amber-900 uppercase">📜 Kerangka Teks Presentasi Lisan:</span>
+                            <button onclick="copyPresentationScript()" class="text-xs bg-white text-amber-900 font-bold px-2.5 py-1 rounded-lg border border-amber-300 hover:bg-amber-100">📋 Salin Teks</button>
+                        </div>
+                        <p id="presentation-script" class="text-xs md:text-sm text-slate-800 font-medium italic leading-relaxed bg-white p-3 rounded-xl border border-amber-200">
+                            "Berdasarkan hasil penyelidikan kelompok kami, harga satuan di Toko A adalah Rp4.000 per buku, sedangkan di Toko B adalah Rp4.500 per buku. Jadi, toko yang lebih hemat adalah Toko A karena harga 1 buku di Toko A lebih murah Rp500 dibandingkan harga 1 buku di Toko B."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Checklist & Presentation Illustration Card -->
+                <div class="space-y-6">
+                    <!-- SVG Student Presenting Illustration -->
+                    <div class="bg-white rounded-3xl p-4 card-shadow border border-slate-200 text-center">
+                        <div class="bg-softOrange p-3 rounded-2xl mb-3 flex justify-center">
+                            <svg class="w-full h-36" viewBox="0 0 200 120" fill="none">
+                                <rect x="30" y="20" width="140" height="70" rx="6" fill="#1E293B"/>
+                                <text x="100" y="45" text-anchor="middle" font-size="10" fill="#FBBF24" font-weight="bold">PRESENTASI KELOMPOK</text>
+                                <text x="100" y="65" text-anchor="middle" font-size="8" fill="#FFFFFF">Toko A: Rp4.000 vs Toko B: Rp4.500</text>
+                                <!-- Presenter character -->
+                                <circle cx="70" cy="95" r="12" fill="#FDE047"/>
+                                <path d="M55 120 C 55 105, 85 105, 85 120 Z" fill="#2563EB"/>
+                                <circle cx="130" cy="95" r="12" fill="#F472B6"/>
+                                <path d="M115 120 C 115 105, 145 105, 145 120 Z" fill="#10B981"/>
+                            </svg>
+                        </div>
+                        <p class="text-xs font-bold text-slate-700">Tampilkan rasa percaya diri saat menyampaikan hasil di depan kelas!</p>
+                    </div>
+
+                    <!-- Readiness Checklist Card -->
+                    <div class="bg-white rounded-3xl p-5 card-shadow border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-sm text-slate-800 flex items-center justify-between">
+                            <span>✅ Checklist Kesiapan Presentasi</span>
+                            <span id="checklist-count" class="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">0/4 Selesai</span>
+                        </h4>
+                        <div class="space-y-2 text-xs text-slate-700">
+                            <label class="flex items-center gap-2 p-2 bg-slate-50 rounded-xl cursor-pointer hover:bg-slate-100">
+                                <input type="checkbox" onchange="updateChecklist()" class="chk-item rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4">
+                                <span>Kami menjelaskan makna rasio satuan.</span>
+                            </label>
+                            <label class="flex items-center gap-2 p-2 bg-slate-50 rounded-xl cursor-pointer hover:bg-slate-100">
+                                <input type="checkbox" onchange="updateChecklist()" class="chk-item rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4">
+                                <span>Kami menunjukkan cara menghitung per satuannya.</span>
+                            </label>
+                            <label class="flex items-center gap-2 p-2 bg-slate-50 rounded-xl cursor-pointer hover:bg-slate-100">
+                                <input type="checkbox" onchange="updateChecklist()" class="chk-item rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4">
+                                <span>Kami membandingkan hasil menggunakan bukti angka.</span>
+                            </label>
+                            <label class="flex items-center gap-2 p-2 bg-slate-50 rounded-xl cursor-pointer hover:bg-slate-100">
+                                <input type="checkbox" onchange="updateChecklist()" class="chk-item rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4">
+                                <span>Kami menghargai pendapat seluruh anggota kelompok.</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="flex justify-between items-center pt-4">
+                <button onclick="goToStep(3)" class="px-5 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold rounded-2xl transition">
+                    ⬅️ Kembali
+                </button>
+                <button onclick="goToStep(5)" class="px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-2xl shadow-lg transition flex items-center gap-2">
+                    <span>Lanjut ke Refleksi & Kuis (Tahap 5)</span>
+                    <span>➡️</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ==================== TAHAP 5: REFLEKSI ==================== -->
+        <section id="step-5" class="hidden space-y-6">
+            <!-- Header Card -->
+            <div class="bg-gradient-to-r from-rose-500 via-purple-600 to-indigo-600 text-white rounded-3xl p-6 shadow-lg relative overflow-hidden">
+                <div class="relative z-10">
+                    <span class="bg-brandYellow text-slate-900 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">Sintaks 5: Evaluasi & Refleksi</span>
+                    <h2 class="text-2xl md:text-3xl font-bold mt-2">Kuis Detektif & Refleksi Diri 📝</h2>
+                    <p class="text-rose-100 text-sm md:text-base mt-1">Uji pemahaman individumu dan refleksikan pengalaman belajar hari ini!</p>
+                </div>
+                <div class="absolute -right-6 -bottom-10 opacity-20 text-9xl">🎓</div>
+            </div>
+
+            <!-- Interactive Individual Quiz Card -->
+            <div class="bg-white rounded-3xl p-6 card-shadow border border-slate-200 space-y-6">
+                <div class="flex flex-wrap justify-between items-center border-b pb-4 gap-2">
+                    <div>
+                        <h3 class="font-bold text-lg text-slate-800">🎯 Kuis Evaluasi Pemahaman Individu</h3>
+                        <p class="text-xs text-slate-500">Jawab 3 soal berikut untuk mendapatkan skor ketuntasanmu.</p>
+                    </div>
+                    <div id="quiz-score-badge" class="hidden bg-emerald-100 text-emerald-800 font-extrabold px-4 py-2 rounded-2xl text-base border border-emerald-300">
+                        Skor: <span id="quiz-score-val">0</span> / 100
+                    </div>
+                </div>
+
+                <form id="quiz-form" class="space-y-6">
+                    <!-- Question 1 -->
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
+                        <p class="font-bold text-sm text-slate-800">1. Rasio satuan menunjukkan ....</p>
+                        <div class="space-y-2 text-xs md:text-sm">
+                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
+                                <input type="radio" name="q1" value="A" class="text-blue-600">
+                                <span>A. Nilai untuk setiap satu satuan suatu besaran</span>
+                            </label>
+                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
+                                <input type="radio" name="q1" value="B" class="text-blue-600">
+                                <span>B. Jumlah dua besaran tanpa membandingkan</span>
+                            </label>
+                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
+                                <input type="radio" name="q1" value="C" class="text-blue-600">
+                                <span>C. Harga total semua barang dalam toko</span>
+                            </label>
+                        </div>
+                        <div id="feedback-q1" class="hidden text-xs p-2.5 rounded-xl font-medium"></div>
+                    </div>
+
+                    <!-- Question 2 -->
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
+                        <p class="font-bold text-sm text-slate-800">2. Tiga botol air mineral berharga Rp15.000. Berapakah harga satu botolnya?</p>
+                        <div class="space-y-2 text-xs md:text-sm">
+                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
+                                <input type="radio" name="q2" value="A" class="text-blue-600">
+                                <span>A. Rp 3.000</span>
+                            </label>
+                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
+                                <input type="radio" name="q2" value="B" class="text-blue-600">
+                                <span>B. Rp 5.000</span>
+                            </label>
+                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
+                                <input type="radio" name="q2" value="C" class="text-blue-600">
+                                <span>C. Rp 12.000</span>
+                            </label>
+                        </div>
+                        <div id="feedback-q2" class="hidden text-xs p-2.5 rounded-xl font-medium"></div>
+                    </div>
+
+                    <!-- Question 3 -->
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
+                        <p class="font-bold text-sm text-slate-800">3. Toko X menjual 6 pensil seharga Rp12.000. Toko Y menjual 4 pensil seharga Rp10.000. Toko mana yang menawarkan harga lebih hemat per pensil?</p>
+                        <div class="space-y-2 text-xs md:text-sm">
+                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
+                                <input type="radio" name="q3" value="A" class="text-blue-600">
+                                <span>A. Toko X (Rp2.000 per pensil)</span>
+                            </label>
+                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
+                                <input type="radio" name="q3" value="B" class="text-blue-600">
+                                <span>B. Toko Y (Rp2.500 per pensil)</span>
+                            </label>
+                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
+                                <input type="radio" name="q3" value="C" class="text-blue-600">
+                                <span>C. Keduanya sama hematnya</span>
+                            </label>
+                        </div>
+                        <div id="feedback-q3" class="hidden text-xs p-2.5 rounded-xl font-medium"></div>
+                    </div>
+
+                    <button type="button" onclick="submitQuiz()" class="w-full py-3.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl shadow-lg transition text-base flex justify-center items-center gap-2">
+                        <span>Periksa Jawaban & Hitung Skor Kuis</span>
+                        <span>✨</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Self-Reflection Form -->
+            <div class="bg-white rounded-3xl p-6 card-shadow border border-slate-200 space-y-4">
+                <h3 class="font-bold text-lg text-slate-800 border-b pb-3">🪞 Refleksi Diri Siswa</h3>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 mb-2">1. Bagaimana tingkat pemahamanmu terhadap materi Rasio Satuan?</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <button onclick="selectUnderstanding('SUDAH')" id="und-SUDAH" class="p-3 border-2 border-slate-200 rounded-2xl hover:border-emerald-500 hover:bg-emerald-50 text-xs font-bold transition text-slate-700 text-center">
+                            🌟 Saya Sudah Memahami
+                        </button>
+                        <button onclick="selectUnderstanding('MULAI')" id="und-MULAI" class="p-3 border-2 border-slate-200 rounded-2xl hover:border-amber-500 hover:bg-amber-50 text-xs font-bold transition text-slate-700 text-center">
+                            🙂 Mulai Paham, Perlu Latihan
+                        </button>
+                        <button onclick="selectUnderstanding('BUTUH')" id="und-BUTUH" class="p-3 border-2 border-slate-200 rounded-2xl hover:border-rose-500 hover:bg-rose-50 text-xs font-bold transition text-slate-700 text-center">
+                            🤝 Masih Butuh Bantuan
+                        </button>
+                    </div>
+                </div>
+
+                <div class="space-y-3 pt-2">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1">2. Hal paling penting yang saya pelajari hari ini:</label>
+                        <input type="text" id="reflect-learned" placeholder="Contoh: Cara mencari harga 1 barang dengan pembagian..." class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1">3. Hal yang masih ingin saya tanyakan kepada guru:</label>
+                        <input type="text" id="reflect-question" placeholder="Tuliskan pertanyaanmu jika ada..." class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1">4. Perasaan saya setelah mengikuti pembelajaran hari ini:</label>
+                        <div class="flex gap-4 pt-1">
+                            <label class="flex items-center gap-1.5 cursor-pointer text-sm">
+                                <input type="radio" name="feeling" value="Sangat Senang 😁" checked>
+                                <span>😁 Sangat Senang</span>
+                            </label>
+                            <label class="flex items-center gap-1.5 cursor-pointer text-sm">
+                                <input type="radio" name="feeling" value="Puas 😄">
+                                <span>😄 Puas</span>
+                            </label>
+                            <label class="flex items-center gap-1.5 cursor-pointer text-sm">
+                                <input type="radio" name="feeling" value="Bingung 😕">
+                                <span>😕 Agak Bingung</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Export / Summary Button -->
+                <button onclick="openSummaryModal()" class="w-full py-4 bg-gradient-to-r from-emerald-600 to-indigo-600 hover:from-emerald-700 hover:to-indigo-700 text-white font-extrabold rounded-2xl shadow-xl transition text-base flex justify-center items-center gap-2">
+                    <span>📄 Tampilkan & Cetak Rangkuman Hasil Belajar</span>
+                    <span>🎉</span>
+                </button>
+            </div>
+
+            <!-- Navigation -->
+            <div class="flex justify-between items-center pt-4">
+                <button onclick="goToStep(4)" class="px-5 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold rounded-2xl transition">
+                    ⬅️ Kembali
+                </button>
+                <button onclick="goToStep(1)" class="px-5 py-2.5 bg-indigo-100 hover:bg-indigo-200 text-indigo-800 font-bold rounded-2xl transition">
+                    🔄 Ke Halaman Utama
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- SUMMARY MODAL (Cetak Rangkuman) -->
+    <div id="summary-modal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 card-shadow space-y-5 border border-slate-200">
+            <div class="flex justify-between items-center border-b pb-3">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">🎓</span>
+                    <h3 class="font-bold text-lg text-slate-800">Rangkuman Portofolio Belajar Detektif</h3>
+                </div>
+                <button onclick="closeSummaryModal()" class="text-slate-400 hover:text-slate-600 text-xl font-bold">✕</button>
+            </div>
+
+            <div id="modal-content" class="space-y-4 text-xs md:text-sm text-slate-700">
+                <!-- Content generated dynamically via JS -->
+            </div>
+
+            <div class="flex justify-end gap-3 border-t pt-4">
+                <button onclick="closeSummaryModal()" class="px-4 py-2 bg-slate-200 text-slate-700 rounded-xl font-bold hover:bg-slate-300">
+                    Tutup
+                </button>
+                <button onclick="window.print()" class="px-5 py-2 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 shadow flex items-center gap-1.5">
+                    <span>🖨️ Cetak / Simpan PDF</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-4 text-center border-t border-slate-800 mt-10">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-2">
+            <p>Misi Rasio Satuan — Media Pembelajaran Digital Interaktif Berbasis PBL Matematika Kelas VI SD</p>
+            <p class="text-slate-500">Kurikulum Merdeka — Pembelajaran Mendalam (Deep Learning)</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT APPLICATION LOGIC -->
+    <script>
+        // State Management
+        let currentStep = 1;
+        let selectedHypothesis = '';
+        let selectedUnderstanding = '';
+        let quizScore = 0;
+
+        // Navigation Controller
+        function goToStep(stepNumber) {
+            currentStep = stepNumber;
+            for (let i = 1; i <= 5; i++) {
+                const section = document.getElementById(`step-${i}`);
+                const btn = document.getElementById(`nav-btn-${i}`);
+                
+                if (i === stepNumber) {
+                    section.classList.remove('hidden');
+                    btn.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md step-active font-bold";
+                } else {
+                    section.classList.add('hidden');
+                    btn.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-white";
+                }
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Stage 1: Hypothesis Selection
+        function selectHypothesis(choice) {
+            selectedHypothesis = choice;
+            ['A', 'B', 'SAME'].forEach(opt => {
+                const btn = document.getElementById(`hypo-${opt}`);
+                if (opt === choice) {
+                    btn.classList.add('border-blue-600', 'bg-blue-100', 'text-blue-900', 'font-extrabold');
+                } else {
+                    btn.classList.remove('border-blue-600', 'bg-blue-100', 'text-blue-900', 'font-extrabold');
+                }
+            });
+            const feedback = document.getElementById('hypothesis-feedback');
+            feedback.classList.remove('hidden');
+        }
+
+        // Stage 3: Calculator Logic & Validation
+        function calculateStore(store) {
+            const qtyInput = document.getElementById(`qty-${store}`);
+            const priceInput = document.getElementById(`price-${store}`);
+            
+            const qty = parseFloat(qtyInput.value);
+            const price = parseFloat(priceInput.value);
+
+            // Validation
+            if (isNaN(qty) || qty <= 0) {
+                alert("⚠️ Halo Detektif! Jumlah barang harus berupa angka lebih besar dari 0 ya.");
+                qtyInput.focus();
+                return;
+            }
+
+            if (isNaN(price) || price <= 0) {
+                alert("⚠️ Halo Detektif! Harga total paket harus berupa angka positif ya.");
+                priceInput.focus();
+                return;
+            }
+
+            const unitPrice = price / qty;
+            const formattedUnitPrice = new Intl.NumberFormat('id-ID').format(unitPrice);
+            const formattedTotalPrice = new Intl.NumberFormat('id-ID').format(price);
+
+            document.getElementById(`unit-price-${store}`).innerText = `Rp ${formattedUnitPrice} / buku`;
+            document.getElementById(`step-${store}`).innerText = `Langkah: Rp ${formattedTotalPrice} ÷ ${qty} buku = Rp ${formattedUnitPrice} per buku.`;
+
+            updateComparison();
+        }
+
+        function updateComparison() {
+            const qtyA = parseFloat(document.getElementById('qty-A').value) || 5;
+            const priceA = parseFloat(document.getElementById('price-A').value) || 20000;
+            const qtyB = parseFloat(document.getElementById('qty-B').value) || 4;
+            const priceB = parseFloat(document.getElementById('price-B').value) || 18000;
+
+            const unitA = priceA / qtyA;
+            const unitB = priceB / qtyB;
+
+            const diff = Math.abs(unitA - unitB);
+            const formattedDiff = new Intl.NumberFormat('id-ID').format(diff);
+
+            const titleEl = document.getElementById('compare-title');
+            const descEl = document.getElementById('compare-desc');
+
+            if (unitA < unitB) {
+                titleEl.innerText = `Toko A Lebih Hemat Rp ${formattedDiff} per buku! 🏆`;
+                descEl.innerText = `Harga satuan Toko A (Rp ${new Intl.NumberFormat('id-ID').format(unitA)}) lebih murah daripada Toko B (Rp ${new Intl.NumberFormat('id-ID').format(unitB)}). Keputusan hemat: Pilih Toko A!`;
+            } else if (unitB < unitA) {
+                titleEl.innerText = `Toko B Lebih Hemat Rp ${formattedDiff} per buku! 🏆`;
+                descEl.innerText = `Harga satuan Toko B (Rp ${new Intl.NumberFormat('id-ID').format(unitB)}) lebih murah daripada Toko A (Rp ${new Intl.NumberFormat('id-ID').format(unitA)}). Keputusan hemat: Pilih Toko B!`;
+            } else {
+                titleEl.innerText = `Harga Satuan Kedua Toko SAMA! ⚖️`;
+                descEl.innerText = `Kedua toko menawarkan harga per satu buku yang bernilai sama tepat (Rp ${new Intl.NumberFormat('id-ID').format(unitA)} per buku).`;
+            }
+        }
+
+        // Stage 4: Auto Presentation Builder & Checklist
+        function autoFillPresentation() {
+            const qtyA = parseFloat(document.getElementById('qty-A').value) || 5;
+            const priceA = parseFloat(document.getElementById('price-A').value) || 20000;
+            const qtyB = parseFloat(document.getElementById('qty-B').value) || 4;
+            const priceB = parseFloat(document.getElementById('price-B').value) || 18000;
+
+            const unitA = priceA / qtyA;
+            const unitB = priceB / qtyB;
+
+            document.getElementById('pres-price-A').value = new Intl.NumberFormat('id-ID').format(unitA);
+            document.getElementById('pres-price-B').value = new Intl.NumberFormat('id-ID').format(unitB);
+
+            if (unitA < unitB) {
+                document.getElementById('pres-best-store').value = "Toko A";
+                document.getElementById('pres-reason').value = `harga 1 buku di Toko A (Rp${new Intl.NumberFormat('id-ID').format(unitA)}) lebih murah Rp${new Intl.NumberFormat('id-ID').format(unitB - unitA)} dibandingkan Toko B (Rp${new Intl.NumberFormat('id-ID').format(unitB)}).`;
+            } else if (unitB < unitA) {
+                document.getElementById('pres-best-store').value = "Toko B";
+                document.getElementById('pres-reason').value = `harga 1 buku di Toko B (Rp${new Intl.NumberFormat('id-ID').format(unitB)}) lebih murah Rp${new Intl.NumberFormat('id-ID').format(unitA - unitB)} dibandingkan Toko A (Rp${new Intl.NumberFormat('id-ID').format(unitA)}).`;
+            }
+
+            generatePresentationScript();
+        }
+
+        function generatePresentationScript() {
+            const pA = document.getElementById('pres-price-A').value;
+            const pB = document.getElementById('pres-price-B').value;
+            const best = document.getElementById('pres-best-store').value;
+            const reason = document.getElementById('pres-reason').value;
+
+            const script = `"Berdasarkan hasil penyelidikan kelompok kami, harga satuan di Toko A adalah Rp${pA} per buku, sedangkan di Toko B adalah Rp${pB} per buku. Jadi, toko yang lebih hemat adalah ${best} karena ${reason}"`;
+            document.getElementById('presentation-script').innerText = script;
+        }
+
+        function copyPresentationScript() {
+            const text = document.getElementById('presentation-script').innerText;
+            const temp = document.createElement('textarea');
+            temp.value = text;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+            alert("📋 Teks presentasi berhasil disalin ke clipboard!");
+        }
+
+        function updateChecklist() {
+            const checkboxes = document.querySelectorAll('.chk-item');
+            let checkedCount = 0;
+            checkboxes.forEach(chk => { if (chk.checked) checkedCount++; });
+            document.getElementById('checklist-count').innerText = `${checkedCount}/4 Selesai`;
+        }
+
+        // Stage 5: Quiz System & Auto Grading
+        function submitQuiz() {
+            const answers = {
+                q1: 'A',
+                q2: 'B',
+                q3: 'A'
+            };
+
+            let correctCount = 0;
+
+            for (let i = 1; i <= 3; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                const feedbackEl = document.getElementById(`feedback-q${i}`);
+                feedbackEl.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-rose-100', 'text-rose-800');
+
+                if (selected && selected.value === answers[`q${i}`]) {
+                    correctCount++;
+                    feedbackEl.classList.add('bg-emerald-100', 'text-emerald-800');
+                    feedbackEl.innerHTML = "✅ **Benar!** Penjelasan: " + getExplanation(i, true);
+                } else {
+                    feedbackEl.classList.add('bg-rose-100', 'text-rose-800');
+                    feedbackEl.innerHTML = "❌ **Kurang tepat.** Penjelasan: " + getExplanation(i, false);
+                }
+            }
+
+            quizScore = Math.round((correctCount / 3) * 100);
+            const scoreBadge = document.getElementById('quiz-score-badge');
+            const scoreVal = document.getElementById('quiz-score-val');
+            scoreBadge.classList.remove('hidden');
+            scoreVal.innerText = quizScore;
+
+            alert(`🎉 Kuis Selesai! Kamu mendapatkan skor ${quizScore}/100.`);
+        }
+
+        function getExplanation(qNum, isCorrect) {
+            if (qNum === 1) {
+                return "Rasio satuan adalah harga/nilai untuk tepat 1 unit besaran.";
+            } else if (qNum === 2) {
+                return "Rp15.000 ÷ 3 botol = Rp5.000 per botol.";
+            } else if (qNum === 3) {
+                return "Toko X: Rp12.000 ÷ 6 = Rp2.000/pensil. Toko Y: Rp10.000 ÷ 4 = Rp2.500/pensil. Maka Toko X lebih hemat.";
+            }
+        }
+
+        function selectUnderstanding(level) {
+            selectedUnderstanding = level;
+            ['SUDAH', 'MULAI', 'BUTUH'].forEach(opt => {
+                const btn = document.getElementById(`und-${opt}`);
+                if (opt === level) {
+                    btn.classList.add('border-purple-600', 'bg-purple-100', 'text-purple-900');
+                } else {
+                    btn.classList.remove('border-purple-600', 'bg-purple-100', 'text-purple-900');
+                }
+            });
+        }
+
+        // Summary Modal & Export
+        function openSummaryModal() {
+            const groupName = document.getElementById('group-name').value || "Tim Detektif Matematika";
+            const role1 = document.getElementById('role-1').value || "-";
+            const role2 = document.getElementById('role-2').value || "-";
+            const role3 = document.getElementById('role-3').value || "-";
+            const role4 = document.getElementById('role-4').value || "-";
+            const role5 = document.getElementById('role-5').value || "-";
+
+            const script = document.getElementById('presentation-script').innerText;
+            const learned = document.getElementById('reflect-learned').value || "Mempelajari rasio satuan dan cara membandingkan harga hemat.";
+            const feeling = document.querySelector('input[name="feeling"]:checked')?.value || "Sangat Senang 😁";
+
+            const modalContent = document.getElementById('modal-content');
+            modalContent.innerHTML = `
+                <div class="p-3 bg-blue-50 rounded-2xl border border-blue-200">
+                    <p class="font-bold text-blue-900">👥 Nama Kelompok: ${groupName}</p>
+                    <p class="text-xs text-slate-600 mt-1">Anggota: 1. ${role1} | 2. ${role2} | 3. ${role3} | 4. ${role4} | 5. ${role5}</p>
+                </div>
+
+                <div class="p-3 bg-slate-50 rounded-2xl border border-slate-200 space-y-1">
+                    <p class="font-bold text-slate-800">📊 Hasil Penyelidikan Rasio Satuan:</p>
+                    <p class="text-xs text-slate-700">${script}</p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="p-3 bg-emerald-50 rounded-2xl border border-emerald-200">
+                        <p class="font-bold text-emerald-900">💯 Skor Kuis Individu:</p>
+                        <p class="text-xl font-extrabold text-emerald-700">${quizScore} / 100</p>
+                    </div>
+                    <div class="p-3 bg-purple-50 rounded-2xl border border-purple-200">
+                        <p class="font-bold text-purple-900">😊 Perasaan Belajar:</p>
+                        <p class="text-sm font-bold text-purple-700">${feeling}</p>
+                    </div>
+                </div>
+
+                <div class="p-3 bg-amber-50 rounded-2xl border border-amber-200">
+                    <p class="font-bold text-amber-900">💡 Hal Yang Dipelajari Hari Ini:</p>
+                    <p class="text-xs text-slate-700">${learned}</p>
+                </div>
+            `;
+
+            document.getElementById('summary-modal').classList.remove('hidden');
+        }
+
+        function closeSummaryModal() {
+            document.getElementById('summary-modal').classList.add('hidden');
+        }
+
+        function resetApp() {
+            if (confirm("Apakah kamu yakin ingin mereset seluruh isian dan data progress?")) {
+                location.reload();
+            }
+        }
+
+        // Initialize App
+        window.onload = function() {
+            goToStep(1);
+            updateComparison();
+        };
+    </script>
+</body>
+</html>
